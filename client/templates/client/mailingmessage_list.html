@@ -1,0 +1,27 @@
+{% extends 'client/base.html' %}
+{% block title %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Сообщения</h1>
+</div>
+{% endblock %}
+{% block content %}
+<div class="col-12, mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'client:message_create' %}"> Добавить сообщение </a>
+</div>
+{% for object in object_list %}
+<div class="row text-center">
+    <div class="col-5">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <p class="card-text">Тема сообщения: {{ object.subject }} </p>
+                <p class="card-text">Текст сообщения: {{ object.message }} </p>
+                <a class="btn btn-outline-primary" href="{% url 'client:message_detail' object.pk %}"> Подробнее о сообщении </a>
+                <a class="btn btn-outline-primary" href="{% url 'client:message_update' object.pk %}"> Редактировать </a>
+                <a class="btn btn-outline-danger" href="{% url 'client:message_delete' object.pk %}"> Удалить </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

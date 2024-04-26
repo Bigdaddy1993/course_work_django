@@ -1,0 +1,37 @@
+{% extends 'client/base.html' %}
+{% block title %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Рассылки</h1>
+</div>
+{% endblock %}
+{% block content %}
+<div class="col-12, mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'client:settings_create' %}"> Добавить рассылку </a>
+</div>
+{% for object in object_list %}
+<div class="row text-center">
+    <div class="col-5">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <p class="card-text">Начало рассылки: {{ object.start_time }} </p>
+                <p class="card-text">Конец рассылки: {{ object.end_time }} </p>
+                <p class="card-text">Периодичность рассылки: {{ object.period }} </p>
+                <p class="card-text">Статус рассылки: {{ object.status }} </p>
+                <p class="card-text">Сообщение рассылки: {{ object.message }} </p>
+                <p>Владелец:
+                        {% for value in object.clients.all.values_list %}
+                        <oli>{{value.1 }}</oli>
+                        {% endfor%}
+                </p>
+                <a class="btn btn-outline-primary" href="{% url 'client:settings_detail' object.pk %}"> Подробнее о
+                    рассылке </a>
+                <a class="btn btn-outline-primary" href="{% url 'client:settings_update' object.pk %}">
+                    Редактировать </a>
+                <a class="btn btn-outline-danger" href="{% url 'client:settings_delete' object.pk %}"> Удалить </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'client/base.html' %}
+
+{% block content %}
+<div class="col-6">
+    <div class="card">
+        <div class="header">
+            <h3 class="card-title">
+                Добавление клиента
+            </h3>
+        </div>
+        <div class="card-header"></div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" class="form-floating">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Сохранить</button>
+                <a href="{% url 'client:list_client' %}" type="button" class="btn btn-primary"> Обратно </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'client/base.html' %}
+{% block title %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Клиенты</h1>
+</div>
+{% endblock %}
+{% block content %}
+<div class="col-12, mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'client:create_client' %}"> Добавить клиента </a>
+</div>
+{% for object in object_list %}
+<div class="row text-center">
+    <div class="col-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <p class="card-text">Email: {{ object.email }} </p>
+                <p class="card-text">Ф.И.О.: {{ object.name }} </p>
+                <p class="card-text">Комментарий: {{ object.comment }}</p>
+                <a href="{% url 'client:detail_client' object.pk %}" type="button" class="btn btn-outline-primary">Подробнее</a>
+                <a href="{% url 'client:edit_client' object.pk %}" type="button" class="btn btn-outline-primary">Редактировать</a>
+                <a href="{% url 'client:delete_client' object.pk %}" type="button" class="btn btn-outline-danger">Удалить</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

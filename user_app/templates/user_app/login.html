@@ -1,0 +1,20 @@
+{% extends 'client/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <h4 class="card-title">Вход</h4>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" class="form-floating">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Войти</button>
+                    <a href="{% url 'client:list_client' %}" class="btn btn-success">Назад</a>
+                    <a href="{% url 'user_app:generate_password' %}" class="btn btn-success">Сменить пароль</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% block menu %}
+<div class="col-6">
+    <div class="ms-5">
+        <a class="p-2 btn btn-outline-primary" href="/"> Главная страница </a>
+        <a class="p-2 btn btn-outline-primary" href="/list_client/">Клиенты</a>
+        <a class="p-2 btn btn-outline-primary" href="/message_list/">Сообщения</a>
+        <a class="p-2 btn btn-outline-primary" href="/settings_list/">Рассылки</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'blog:blog_list' %}">Новости</a>
+        {% if user.is_authenticated %}
+        <form action="{% url 'user_app:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="p-2 btn btn-outline-primary">Выйти</button>
+        </form>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'user_app:profile' %}">Профиль</a>
+            {% else %}
+            <a class="p-2 btn btn-outline-primary" href="{% url 'user_app:login' %}">Войти</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'user_app:register' %}">Регистрация</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
