@@ -28,6 +28,6 @@ urlpatterns = [
     path('settings_update/<int:pk>/', MailingSettingsUpdateView.as_view(), name='settings_update'),
     path('settings_delete/<int:pk>/', MailingSettingsDeleteView.as_view(), name='settings_delete'),
 
-    path('', HomePage.as_view(), name='home_page'),
+    path('', cache_page(60)(HomePage.as_view()), name='home_page'),
 
 ]
